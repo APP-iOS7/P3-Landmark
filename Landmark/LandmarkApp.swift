@@ -6,12 +6,21 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct LandmarkApp: App {
+    @StateObject private var authViewModel = AuthManager.shared
+    init() {
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if authViewModel.user != nil {
+                ContentView()
+            } else {
+                AuthView()
+            }
         }
     }
 }

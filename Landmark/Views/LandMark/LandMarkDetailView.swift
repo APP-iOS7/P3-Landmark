@@ -53,5 +53,5 @@ struct LandMarkDetailView: View {
 }
 
 #Preview {
-    LandMarkDetailView(landmark: MockItem.shared)
+//    LandMarkDetailView(landmark: MockItem.shared)
 }

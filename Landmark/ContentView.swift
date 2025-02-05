@@ -23,7 +23,7 @@ struct ContentView: View {
                 Label("Favorite", systemImage: "heart")
             }
             Tab {
-//                MypageView()
+                MypageView()
             } label: {
                 Label("My page", systemImage: "person.fill")
             }
