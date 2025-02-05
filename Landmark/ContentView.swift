@@ -16,9 +16,8 @@ struct ContentView: View {
             } label: {
                 Label("search", systemImage: "magnifyingglass")
             }
-            
             Tab {
-                LandmarkListView()
+                FavoriteView()
             } label: {
                 Label("Favorite", systemImage: "heart")
             }

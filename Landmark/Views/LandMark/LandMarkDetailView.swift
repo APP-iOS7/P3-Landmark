@@ -9,43 +9,51 @@ import SwiftUI
 
 
 struct LandMarkDetailView: View {
-    var landmark: Item
+    @State var VM = LandmarkViewModel()
+    
+    let landmark: Item
     
     var body: some View {
         ScrollView {
-            MapView(coordinate: landmark.locationCoordinate)
+            MapView(coordinate: VM.detailLandmark.locationCoordinate)
                 .frame(height: 300)
             
-            AsyncImage(url: URL(string: landmark.firstimage2!), scale: 1)
+            AsyncImage(url: URL(string: VM.detailLandmark.firstimage2!), scale: 1)
                 .frame(width: 200, height: 200)
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
                 .shadow(radius: 10)
                 .offset(y: -100)
                 .padding(.bottom, -100)
-
+            
             VStack(alignment: .leading) {
                 HStack {
-                    Text(landmark.title)
+                    Text(VM.detailLandmark.title)
                         .font(.title)
                 }
-
+                
                 HStack {
-                    Text(landmark.tel ?? "번호 없음")
+                    Text(VM.detailLandmark.tel ?? "번호 없음")
                     Spacer()
-                    Text(landmark.addr1)
+                    Text(VM.detailLandmark.addr1)
                 }
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-
+                
                 Divider()
-
+                
                 Text("About")
                     .font(.title2)
-                Text(landmark.title)
+                Text(VM.detailLandmark.overview ?? "")
                     .frame(maxWidth: .infinity, alignment: .leading)  // 추가
             }
             .padding()
+        }
+        .onAppear {
+            Task {
+                await VM.fetchDetailLandmark(id: landmark.contentid)
+                
+            }
         }
         .navigationTitle(landmark.title)
         .navigationBarTitleDisplayMode(.automatic)
@@ -53,5 +61,5 @@ struct LandMarkDetailView: View {
 }
 
 #Preview {
-//    LandMarkDetailView(landmark: MockItem.shared)
+    //    LandMarkDetailView(landmark: MockItem.shared)
 }

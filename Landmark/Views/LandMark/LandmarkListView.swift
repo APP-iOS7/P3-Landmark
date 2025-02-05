@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LandmarkListView: View {
-    @State private var VM: LandmarkListViewModel = .init()
+    @State private var VM: LandmarkViewModel = .init()
     var body: some View {
         NavigationStack {
             HStack {
@@ -41,7 +41,7 @@ struct LandmarkListView: View {
                                     }
                                 }
                             } else {
-                                Image(systemName: "photo") // 기본 이미지 제공
+                                Image(systemName: "photo")
                                     .resizable()
                                     .frame(width: 50, height: 50)
                             }

@@ -10,55 +10,56 @@ import CoreLocation
 
 struct APIResponse: Codable {
     let response: Response
-}
-
-struct Response: Codable {
-    let header: ResponseHeader
-    let body: ResponseBody
-}
-
-struct ResponseHeader: Codable {
-    let resultCode: String
-    let resultMsg: String
-}
-
-struct ResponseBody: Codable {
-    let items: Items
-    let numOfRows: Int
-    let pageNo: Int
-    let totalCount: Int
-}
-
-struct Items: Codable {
-    let item: [Item]
+    
+    struct Response: Codable {
+        let header: ResponseHeader
+        let body: ResponseBody
+        
+        struct ResponseHeader: Codable {
+            let resultCode: String
+            let resultMsg: String
+        }
+        struct ResponseBody: Codable {
+            let items: Items
+            let numOfRows: Int
+            let pageNo: Int
+            let totalCount: Int
+            
+            struct Items: Codable {
+                let item: [Item]
+            }
+        }
+    }
 }
 
 struct Item: Codable, Identifiable, Hashable {
     var id: String { contentid }
-    let addr1: String
-    let addr2: String?
-    let areacode: String
-    let booktour: String?
-    let cat1: String
-    let cat2: String
-    let cat3: String
     let contentid: String
     let contenttypeid: String
+    let title: String
     let createdtime: String
+    let modifiedtime: String
+    let tel: String?
+    let telname: String?
+    let homepage: String?
+    let booktour: String?
     let firstimage: String?
     let firstimage2: String?
     let cpyrhtDivCd: String?
+    let areacode: String
+    let sigungucode: String
+    let addr1: String
+    let addr2: String?
+    let zipcode: String?
     let mapx: String
     let mapy: String
     let mlevel: String
-    let modifiedtime: String
-    let sigungucode: String
-    let tel: String?
-    let title: String
+    let overview: String?
+    
     var locationCoordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(
-            latitude: Double(mapx) ?? 0,
-            longitude: Double(mapy) ?? 0
+            latitude: Double(mapy) ?? 0,
+            longitude: Double(mapx) ?? 0
         )
     }
 }
