@@ -28,7 +28,7 @@ final class AuthViewModel {
                     try await AuthManager.shared.signIn(email: email, password: password)
                 }
                 isLoading = false
-                navigationPath.append("Main") // 로그인 성공 시 상태 변경
+                navigationPath.append("Main")
             } catch {
                 print("Auth Error:\(error.localizedDescription)")
                 isLoading = false
