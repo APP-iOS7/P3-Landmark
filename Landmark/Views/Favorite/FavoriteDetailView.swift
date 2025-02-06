@@ -18,7 +18,6 @@ struct FavoriteDetailView: View {
                 .frame(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height * 0.55)
                 .cornerRadius(10)
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 4)
-            
         }
         
         VStack(alignment: .leading, spacing: 10) {
