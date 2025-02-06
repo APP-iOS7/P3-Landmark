@@ -5,6 +5,7 @@ import SwiftData
 struct FavoriteDetailView: View {
     let favoriteItem: FavoriteItem
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) var dismiss
 
     @State private var content: String = ""
     @State private var visitDate: Date = Date()
@@ -92,6 +93,20 @@ struct FavoriteDetailView: View {
         .onAppear {
             loadDetailData()
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    dismiss()
+                    modelContext.delete(favoriteItem)
+                    try? modelContext.save()
+                } label: {
+                    Image(systemName: "trash")
+                        .foregroundStyle(.red)
+                }
+                
+            }
+        }
+        
     }
     
     // ✅ 기존 Detail 데이터 불러오기

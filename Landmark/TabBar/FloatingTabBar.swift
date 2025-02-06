@@ -15,7 +15,7 @@ struct FloatingTabBar: View {
             Spacer()
             TabButton(icon: "magnifyingglass", label:"검색",index: 0, selectedTab: $selectedTab)
             Spacer()
-            TabButton(icon: "heart.fill",label:"좋아요", index: 1, selectedTab: $selectedTab)
+            TabButton(icon: "heart.fill",label:"관심여행지", index: 1, selectedTab: $selectedTab)
             Spacer()
             TabButton(icon: "person.fill",label:"내 정보", index: 2, selectedTab: $selectedTab)
             Spacer()

@@ -16,7 +16,7 @@ struct FavoriteView: View {
     var body: some View {
         NavigationStack {
             ScrollView(.horizontal, showsIndicators: false) { // 가로 스크롤
-                LazyHStack(spacing: 20) { // 가로 배치
+                LazyHStack(spacing: 0) { // 가로 배치
                     ForEach(favoriteItems) { item in
                         NavigationLink(value: item) {
                             VStack {
@@ -53,9 +53,19 @@ struct FavoriteView: View {
                                                                 Spacer()
                                                                 
                                                                 Text(item.title)
-                                                                    .padding(.bottom, 10)
+                                                                    .padding(.bottom, 5)
                                                                     .foregroundStyle(.white)
                                                                     .font(.system(size: 25, weight: .bold))
+                                                                
+                                                                Text("✩✩✩✩✩")
+                                                                    .padding(.bottom, 10)
+                                                                    .foregroundStyle(.white)
+                                                                    .font(.system(size: 20, weight: .bold))
+                                                                
+                                                                Text("2025년 10월 10일")
+                                                                    .padding(.bottom, 20)
+                                                                    .foregroundStyle(.white)
+                                                                    .font(.system(size: 15, weight: .bold))
                                                                 
                                                                 Text(item.address)
                                                                     .padding(.bottom, 30)
