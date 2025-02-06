@@ -5,8 +5,14 @@ struct LandMarkDetailView: View {
     @State private var VM = LandmarkViewModel()
     @Environment(\.modelContext) var modelContext
     @EnvironmentObject var appSetting: AppSettings
+
+    @Query var favoriteItems: [FavoriteItem]
     
     let landmark: Item
+    
+    var isAlreadyInFavorite: Bool {
+        favoriteItems.contains { $0.contentid == landmark.contentid }
+    }
     
     var body: some View {
         ScrollView {
@@ -14,15 +20,15 @@ struct LandMarkDetailView: View {
             AsyncImage(url: URL(string: VM.detailLandmark.firstimage ?? "이미지 정보없음"), scale: 1) { image in
                 image
                     .resizable()
-                    .aspectRatio(contentMode: .fill) // Avoid image cropping
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.55)
-                    .cornerRadius(10) // Match corner radius
-                    .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 4) // Shadow for better depth
+                    .cornerRadius(10)
+                    .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 4)
             } placeholder: {
                 Rectangle()
                     .fill(Color.gray.opacity(0.3))
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 0.6)
-                    .cornerRadius(10) // Rounded corners for consistency
+                    .cornerRadius(10)
             }
             
             VStack(alignment: .leading, spacing: 15) {
@@ -42,7 +48,6 @@ struct LandMarkDetailView: View {
                 
                 Divider()
                 
-                // Address Section
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
                         Image(systemName: "mappin.and.ellipse")
@@ -56,7 +61,7 @@ struct LandMarkDetailView: View {
                     Text(VM.detailLandmark.addr1)
                         .font(.subheadline)
                         .foregroundColor(.gray)
-                        .lineLimit(3) // Limit lines to avoid overflow
+                        .lineLimit(3)
                     
                     Divider()
                 }
@@ -65,7 +70,6 @@ struct LandMarkDetailView: View {
                 .cornerRadius(10)
                 .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
                 
-                // About Section
                 VStack(alignment: .leading, spacing: 10) {
                     Text("About")
                         .font(.title2)
@@ -73,7 +77,7 @@ struct LandMarkDetailView: View {
                     Text(VM.detailLandmark.overview ?? "상세 정보 없음")
                         .font(.body)
                         .foregroundColor(.gray)
-                        .fixedSize(horizontal: false, vertical: true) // Prevent text clipping
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding([.horizontal])
                 
@@ -81,15 +85,16 @@ struct LandMarkDetailView: View {
                 Button {
                     addToFavorite()
                 } label: {
-                    Text("좋아요")
+                    Text(isAlreadyInFavorite ? "이미 넣었다 아이가" : "자...드가자")
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.blue)
+                        .background(isAlreadyInFavorite ? Color.gray : Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(10)
-                        .shadow(color: Color.blue.opacity(0.3), radius: 6, x: 0, y: 4)
+                        .shadow(color: isAlreadyInFavorite ? Color.gray.opacity(0.3) : Color.blue.opacity(0.3), radius: 6, x: 0, y: 4)
                 }
+                .disabled(isAlreadyInFavorite)
                 .padding([.horizontal, .bottom])
             }
             .padding([.horizontal])
@@ -105,10 +110,17 @@ struct LandMarkDetailView: View {
     }
     
     func addToFavorite() {
-        let savemodel = FavoriteItem(contentid: landmark.contentid, title: landmark.title, latitude: landmark.mapy, longitude: landmark.mapx, imgURL: landmark.firstimage!, address: landmark.addr1)
-        print(landmark.contentid)
-        print(savemodel)
-        dump(savemodel)
-        modelContext.insert(savemodel)
+        guard !isAlreadyInFavorite else { return }
+        
+        let saveModel = FavoriteItem(
+            contentid: landmark.contentid,
+            title: landmark.title,
+            latitude: landmark.mapy,
+            longitude: landmark.mapx,
+            imgURL: landmark.firstimage!,
+            address: landmark.addr1
+        )
+        
+        modelContext.insert(saveModel)
     }
 }
