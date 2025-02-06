@@ -23,7 +23,6 @@ final class AuthManager: ObservableObject {
     @MainActor
     func signIn(email: String, password: String) async throws {
         let result = try await Auth.auth().signIn(withEmail: email, password: password)
-        
         self.user = result.user
     }
     
@@ -31,7 +30,6 @@ final class AuthManager: ObservableObject {
     @MainActor
     func signUp(email: String, password: String) async throws {
         let result = try await Auth.auth().createUser(withEmail: email, password: password)
-        
         let user = result.user
         
         if let userEmail = user.email {

@@ -17,6 +17,8 @@ final class AuthViewModel {
     var isLoading = false
     var isAuthenticated = false // 로그인 성공여부 추가
     var navigationPath = [String]() // 네비게이션 경로관리
+    var toastMessage = ""
+    var isShowingToast = false
     
     func buttonDidTap() {
         Task {
@@ -26,13 +28,22 @@ final class AuthViewModel {
                     isLoading = false
                 } else {
                     try await AuthManager.shared.signIn(email: email, password: password)
+                    isAuthenticated = true
+                    showToast(message: "로그인 성공")
                 }
                 isLoading = false
                 navigationPath.append("Main")
             } catch {
-                print("Auth Error:\(error.localizedDescription)")
-                isLoading = false
+                showToast(message: "로그인 실패: \(error.localizedDescription)")
             }
+        }
+    }
+    
+    private func showToast(message: String) {
+        toastMessage = message
+        isShowingToast = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.isShowingToast = false
         }
     }
 }

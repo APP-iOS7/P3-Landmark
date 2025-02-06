@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct AuthView: View {
-    
     @State private var VM = AuthViewModel()
-    @State private var keyboardHeight: CGFloat = 0
+    @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
         NavigationStack(path: $VM.navigationPath) {
@@ -22,12 +21,19 @@ struct AuthView: View {
                             .zIndex(1)
                         
                         // Background Image
-                        Image("TripImage")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
+                        GeometryReader { geometry in
+                            Image("TripImage")
+                                .resizable()
+                                .frame(width: geometry.size.width,height: geometry.size.height )
+                                .clipped()
+                                .aspectRatio(contentMode: .fill)
+                        }
                     }
                     .ignoresSafeArea()
-                
+                    .onTapGesture {
+                        isTextFieldFocused = false
+                    }
+            
                     VStack(spacing: 25) {
                         // App Name
                         VStack(spacing: 5) {
@@ -81,11 +87,14 @@ struct AuthView: View {
                             .textFieldStyle(IconTextFieldStyle(iconName:"envelope.fill"))
                             .textInputAutocapitalization(.never)
                             .keyboardType(.emailAddress)
+                            .focused($isTextFieldFocused)
                             
                             // Password
                             SecureField("Password", text: $VM.password,
-                                        prompt: Text("Password").foregroundStyle(.white))
+                                        prompt: Text("Password")
+                                .foregroundStyle(.white))
                             .textFieldStyle(IconTextFieldStyle(iconName:"lock.fill"))
+                            .focused($isTextFieldFocused)
                             
                         }
                         .padding(.vertical, 10)
