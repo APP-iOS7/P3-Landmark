@@ -14,7 +14,7 @@ struct PasswordResetView: View {
     
     var body: some View {
         VStack {
-            Text("Password Reset")
+            Text("비밀번호 재설정")
                 .font(.system(.title3, design: .rounded, weight: .bold))
                 .foregroundColor(.white.opacity(0.85))
                 .multilineTextAlignment(.center)
@@ -38,7 +38,7 @@ struct PasswordResetView: View {
                 }
                 showForgetPass = false
             } label: {
-                Text("Send Reset Link")
+                Text("재설정")
                     .font(.system(.title3, design: .rounded))
             }
             .frame(maxWidth: .infinity)

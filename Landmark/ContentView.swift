@@ -7,30 +7,33 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
+    @State private var selectedTab: Int = 0
+    
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
+            LandmarkListView()
+                .tabItem {
+                    Label("search", systemImage: "magnifyingglass")
+                }
+                .tag(0)
             
-            Tab {
-                LandmarkListView()
-            } label: {
-                Label("search", systemImage: "magnifyingglass")
-            }
+            LandmarkListView()
+                .tabItem {
+                    Label("search", systemImage: "magnifyingglass")
+                }
+                .tag(1)
             
-            Tab {
-                LandmarkListView()
-            } label: {
-                Label("Favorite", systemImage: "heart")
-            }
-            Tab {
-                MypageView()
-            } label: {
-                Label("My page", systemImage: "person.fill")
-            }
+            MypageView()
+                .tabItem {
+                    Label("search", systemImage: "magnifyingglass")
+                }
+                .tag(2)
+            
         }
     }
 }
-
 #Preview {
     ContentView()
 }
