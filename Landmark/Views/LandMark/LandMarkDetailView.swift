@@ -11,7 +11,7 @@ struct LandMarkDetailView: View {
     var body: some View {
         ScrollView {
             // Image Section
-            AsyncImage(url: URL(string: VM.detailLandmark.firstimage ?? ""), scale: 1) { image in
+            AsyncImage(url: URL(string: VM.detailLandmark.firstimage ?? "이미지 정보없음"), scale: 1) { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill) // Avoid image cropping

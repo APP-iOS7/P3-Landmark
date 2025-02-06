@@ -14,7 +14,7 @@ struct LandmarkMapView: View {
     
     var body: some View {
         ZStack {
-            MapView(coordinate: appSetting.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.0001, longitudeDelta: 0.0001))
+            MapView(coordinate: appSetting.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.0010, longitudeDelta: 0.0010))
             .gesture(DragGesture())
             
             

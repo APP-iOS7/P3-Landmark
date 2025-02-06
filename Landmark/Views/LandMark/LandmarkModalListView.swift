@@ -25,33 +25,38 @@ struct LandmarkModalListView: View {
                             
                             TextField("지역, 공간 검색", text: $VM.searchText)
                                 .foregroundStyle(.black)
+                                .padding(.vertical, 12)
+                                .padding(.leading, 10)
                                 .frame(width: 300, height: 50)
                                 .onChange(of: VM.searchText) {
                                     Task {
                                         await VM.fetchLandmarks()
                                     }
                                 }
-                        }
-                        .background(Color(.systemGray6))
-                        .cornerRadius(20)
-                        .padding(.top, 20)
-                        
-                        if !VM.searchText.isEmpty {
-                            Button(action: {
-                                VM.searchText = ""
-                            }) {
-                                Image(systemName: "xmark.circle.fill")
-                                    .resizable()
-                                    .frame(width: 35, height: 35)
-                                    .tint(.black)
+                            if !VM.searchText.isEmpty {
+                                Button(action: {
+                                    VM.searchText = ""
+                                }) {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                    
+                                }
+                                .padding(.trailing, 10)
+                                .tint(.black)
                                 
                             }
-                            .padding(.leading, 5)
-                            .padding(.top, 20)
+
                         }
+                        .background(Color(.systemGray6))
+                        .cornerRadius(12)
+                        .shadow(radius: 5)
+                        .padding(.top, 20)
+                        
                         
                     }
                     .padding(.horizontal)
+                    
                     List {
                         ForEach(VM.landmarks) { landmark in
                             NavigationLink(value: landmark) {
@@ -64,11 +69,14 @@ struct LandmarkModalListView: View {
                                             case .success(let image):
                                                 image.resizable()
                                                     .scaledToFit()
-                                                    .frame(width: 50, height: 50)
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: 120, height: 80)
+                                                    .cornerRadius(8)
                                             case .failure:
                                                 Image(systemName: "photo")
                                                     .resizable()
-                                                    .frame(width: 50, height: 50)
+                                                    .frame(width: 120, height: 80)
+                                                    .cornerRadius(8)
                                             default:
                                                 EmptyView()
                                             }
@@ -76,14 +84,29 @@ struct LandmarkModalListView: View {
                                     } else {
                                         Image(systemName: "photo")
                                             .resizable()
-                                            .frame(width: 50, height: 50)
+                                            .frame(width: 120, height: 80)
+                                            .cornerRadius(8)
                                     }
                                     Text(landmark.title)
                                         .font(.headline)
+                                        .padding(.leading, 10)
+                                        .foregroundStyle(.black)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
+                                .padding(5)
+                                .background(Color.white)
+                                .cornerRadius(12)
                             }
+                            Text(landmark.addr1)
+                                .font(.subheadline)
+                                .padding(.leading, 10)
+                                .foregroundStyle(.gray)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
+                    .padding(.top, 10)
+                    .listStyle(.inset)
+                    
                     .navigationDestination(for: Item.self) { landmark in
                         LandMarkDetailView(landmark: landmark)
                     }
