@@ -21,7 +21,7 @@ struct LandmarkApp: App {
     
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            FavoriteStore.self, FavoriteItem.self
+            FavoriteItem.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -41,7 +41,7 @@ struct LandmarkApp: App {
                 AuthView()
             }
         }
-//        .modelContainer(sharedModelContainer)
+        .modelContainer(sharedModelContainer)
     }
 }
 

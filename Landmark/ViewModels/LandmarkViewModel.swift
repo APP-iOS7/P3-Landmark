@@ -10,7 +10,6 @@ import SwiftData
 
 @Observable
 class LandmarkViewModel {
-//    @Environment(\.modelContext) var modelContext
     
     var landmarks: [Item] = []
     var searchText: String = ""
@@ -33,17 +32,7 @@ class LandmarkViewModel {
         }
     }
     
-//    func saveLandmark() {
-//        let savedLandmark = FavoriteItem(from: detailLandmark)
-//        modelContext.insert(savedLandmark)
-//        
-//        do {
-//            try modelContext.save()
-//            print("좋아요 저장됨: \(savedLandmark.title)")
-//        } catch {
-//            print("저장 실패: \(error)")
-//        }
-//    }
+    
 }
 
 
