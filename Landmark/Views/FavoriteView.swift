@@ -10,7 +10,7 @@ import SwiftUI
 struct FavoriteView: View {
     
     var body: some View {
-        Text("Hello, World!")
+        Text("d")
     }
 }
 

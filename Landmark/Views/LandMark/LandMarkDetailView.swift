@@ -10,21 +10,22 @@ import SwiftUI
 
 struct LandMarkDetailView: View {
     @State var VM = LandmarkViewModel()
+    @EnvironmentObject var appSetting: AppSettings
     
     let landmark: Item
     
     var body: some View {
         ScrollView {
-            MapView(coordinate: VM.detailLandmark.locationCoordinate)
-                .frame(height: 300)
+            AsyncImage(url: URL(string: VM.detailLandmark.firstimage ?? ""), scale: 1) { image in
+                image
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 0.5)
+            } placeholder: {
+                Rectangle()
+                    .fill(Color.gray.opacity(0.3))
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 0.6)
+            }
             
-            AsyncImage(url: URL(string: VM.detailLandmark.firstimage2!), scale: 1)
-                .frame(width: 200, height: 200)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                .shadow(radius: 10)
-                .offset(y: -100)
-                .padding(.bottom, -100)
             
             VStack(alignment: .leading) {
                 HStack {
@@ -45,14 +46,20 @@ struct LandMarkDetailView: View {
                 Text("About")
                     .font(.title2)
                 Text(VM.detailLandmark.overview ?? "")
-                    .frame(maxWidth: .infinity, alignment: .leading)  // 추가
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Button {
+                    // 좋아요 누르면 리스트에 추가됨
+                } label: {
+                    Text("좋아요")
+                }
+                .padding()
             }
             .padding()
         }
         .onAppear {
             Task {
                 await VM.fetchDetailLandmark(id: landmark.contentid)
-                
+                appSetting.coordinate = VM.detailLandmark.locationCoordinate
             }
         }
         .navigationTitle(landmark.title)

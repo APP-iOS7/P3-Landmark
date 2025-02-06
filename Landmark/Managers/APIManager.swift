@@ -58,7 +58,6 @@ struct APIManager {
         
         do {
             let decodedData = try decoder.decode(APIResponse.self, from: data)
-            print(decodedData)  // 디코딩된 데이터 출력
             return decodedData.response.body.items.item.first!
         } catch {
             print("디코딩 오류: \(error)")

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct AuthView: View {
-    
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @State private var VM = AuthViewModel()
-
+    
     var body: some View {
         NavigationStack(path: $VM.navigationPath) {
             ZStack {
@@ -21,9 +21,13 @@ struct AuthView: View {
                         .zIndex(1)
                     
                     // Background Image
-                    Image("TripImage")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
+                    GeometryReader { geometry in
+                        Image("TripImage")
+                            .resizable()
+                            .frame(width: geometry.size.width,height: geometry.size.height )
+                            .clipped()
+                            .aspectRatio(contentMode: .fill)
+                    }
                 }
                 .ignoresSafeArea()
                 
@@ -89,7 +93,7 @@ struct AuthView: View {
                     }
                     .padding(.vertical, 10)
                     .padding(.horizontal, 30)
-                                        
+                    
                     Button {
                         VM.buttonDidTap()
                         withAnimation {
@@ -99,7 +103,7 @@ struct AuthView: View {
                         HStack {
                             if !VM.isLoading {
                                 Text(VM.isSignUp ? "Sign Up" : "Login")
-                                .font(.system(.title3, design: .rounded, weight: .bold))
+                                    .font(.system(.title3, design: .rounded, weight: .bold))
                             } else {
                                 // Loading indicator
                                 ProgressView()
@@ -149,10 +153,10 @@ struct AuthView: View {
                 .padding()
                 .sheet(isPresented: $VM.showForgetPass) {
                     PasswordResetView(showForgetPass: $VM.showForgetPass)
-                    .padding()
-                    .presentationDetents([.fraction(0.25)])
-                    .presentationDragIndicator(.visible)
-                    .presentationBackground(.ultraThinMaterial)
+                        .padding()
+                        .presentationDetents([.fraction(0.25)])
+                        .presentationDragIndicator(.visible)
+                        .presentationBackground(.ultraThinMaterial)
                 }
             }
         }
