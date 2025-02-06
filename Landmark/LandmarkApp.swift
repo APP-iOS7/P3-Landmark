@@ -18,30 +18,17 @@ struct LandmarkApp: App {
     init() {
         FirebaseApp.configure()
     }
-    
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            FavoriteItem.self
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
 
     var body: some Scene {
         WindowGroup {
             if authViewModel.user != nil {
                 ContentView()
                     .environmentObject(appSettings)
+                    .modelContainer(for: FavoriteItem.self)
             } else {
                 AuthView()
             }
         }
-        .modelContainer(sharedModelContainer)
     }
 }
 

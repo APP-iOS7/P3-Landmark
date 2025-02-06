@@ -10,12 +10,22 @@ import SwiftData
 
 
 @Model
-class FavoriteItem {
+final class FavoriteItem {
     var contentid: String
     var title: String
-
-    init(contentid: String, title: String) {
+    var latitude: String
+    var longitude: String
+    var imgURL: String
+    var address: String
+    var isDone: Bool = false
+    var initDate: Date = Date()
+    
+    init(contentid: String, title: String, latitude: String, longitude: String, imgURL: String, address: String) {
         self.contentid = contentid
         self.title = title
+        self.latitude = latitude
+        self.longitude = longitude
+        self.imgURL = imgURL
+        self.address = address
     }
 }
