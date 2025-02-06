@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct LandmarkListTest: View {
-    @State private var VM: LandmarkListViewModel = .init()
-    
+    @State private var VM: LandmarkViewModel = .init()
+    @EnvironmentObject var tabSetting: AppSettings
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -25,7 +26,7 @@ struct LandmarkListTest: View {
                             TextField("지역, 공간 검색", text: $VM.searchText)
                                 .foregroundStyle(.black)
                                 .frame(width: 300, height: 50)
-                                .onChange(of: VM.searchText) { 
+                                .onChange(of: VM.searchText) {
                                     Task {
                                         await VM.fetchLandmarks()
                                     }
@@ -33,7 +34,7 @@ struct LandmarkListTest: View {
                         }
                         .background(Color(.systemGray6))
                         .cornerRadius(20)
-                        .padding(.top, 40)
+                        .padding(.top, 20)
                         
                         if !VM.searchText.isEmpty {
                             Button(action: {
@@ -42,7 +43,6 @@ struct LandmarkListTest: View {
                                 Image(systemName: "xmark.circle.fill")
                                     .resizable()
                                     .frame(width: 35, height: 35)
-                                //                                .foregroundStyle(.gray.opacity(0.4))
                                     .tint(.black)
                                 
                             }
@@ -52,8 +52,6 @@ struct LandmarkListTest: View {
                         
                     }
                     .padding(.horizontal)
-                    
-                    
                     List {
                         ForEach(VM.landmarks) { landmark in
                             NavigationLink(value: landmark) {
@@ -68,7 +66,7 @@ struct LandmarkListTest: View {
                                                     .scaledToFit()
                                                     .frame(width: 50, height: 50)
                                             case .failure:
-                                                Image(systemName: "photo") // 기본 이미지 제공
+                                                Image(systemName: "photo")
                                                     .resizable()
                                                     .frame(width: 50, height: 50)
                                             default:
@@ -76,7 +74,7 @@ struct LandmarkListTest: View {
                                             }
                                         }
                                     } else {
-                                        Image(systemName: "photo") // 기본 이미지 제공
+                                        Image(systemName: "photo")
                                             .resizable()
                                             .frame(width: 50, height: 50)
                                     }
@@ -90,60 +88,12 @@ struct LandmarkListTest: View {
                         LandMarkDetailView(landmark: landmark)
                     }
                 }
-                FloatingTabBar()
             }
-            
+            FloatingTabBar(selectedTab: $tabSetting.tab)
         }
     }
 }
-struct FloatingTabBar: View {
-    @State private var selectedTab: Int = 0
-    @State private var isShowingDetail = false
-    
-    var body: some View {
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    
-                    // 각 탭 아이콘
-                    Button(action: {
-                        selectedTab = 0
-                    }) {
-                        Image(systemName: "magnifyingglass")
-                            .font(.system(size: 25))
-                            .foregroundColor(selectedTab == 0 ? .blue : .gray)
-                    }
-                    Spacer()
-                    
-                    Button(action: {
-                        selectedTab = 1
-                    }) {
-                        Image(systemName: "heart.fill")
-                            .font(.system(size: 25))
-                            .foregroundColor(selectedTab == 1 ? .blue : .gray)
-                    }
-                    Spacer()
-                    
-                    Button(action: {
-                        selectedTab = 2
-                    }) {
-                        Image(systemName: "person.fill")
-                            .font(.system(size: 25))
-                            .foregroundColor(selectedTab == 2 ? .blue : .gray)
-                        }
-                    
-                    Spacer()
-                }
-                .frame(height: 70)
-                .background(Color.white)
-                .cornerRadius(35)
-                .shadow(radius: 10)
-                .padding()
-            }
-            .edgesIgnoringSafeArea(.all)
-        }
-    }
+
 
 #Preview {
     LandmarkListTest()
