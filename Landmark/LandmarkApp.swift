@@ -8,15 +8,30 @@
 import SwiftUI
 import Firebase
 import MapKit
+import SwiftData
 
 @main
 struct LandmarkApp: App {
     @StateObject private var authViewModel = AuthManager.shared
+    @StateObject private var appSettings = AppSettings()
+    
     init() {
         FirebaseApp.configure()
     }
     
-    @StateObject private var appSettings = AppSettings()
+    var sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            FavoriteItem.self
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+
     var body: some Scene {
         WindowGroup {
             if authViewModel.user != nil {
@@ -26,6 +41,7 @@ struct LandmarkApp: App {
                 AuthView()
             }
         }
+        .modelContainer(sharedModelContainer)
     }
 }
 

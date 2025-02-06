@@ -6,11 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct FavoriteView: View {
-    
+    @Query private var favoriteItems: [FavoriteItem]
     var body: some View {
-        Text("d")
+        Text("Favorite")
+        List {
+            ForEach(favoriteItems) { landmark in
+                Text(landmark.title)
+            }
+        }
+        
     }
 }
 

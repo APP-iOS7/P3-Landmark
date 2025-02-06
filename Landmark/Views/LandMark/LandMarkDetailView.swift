@@ -1,7 +1,9 @@
 import SwiftUI
+import SwiftData
 
 struct LandMarkDetailView: View {
-    @State var VM = LandmarkViewModel()
+    @State private var VM = LandmarkViewModel()
+    @Environment(\.modelContext) var modelContext
     @EnvironmentObject var appSetting: AppSettings
     
     let landmark: Item
@@ -22,9 +24,8 @@ struct LandMarkDetailView: View {
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 0.6)
                     .cornerRadius(10) // Rounded corners for consistency
             }
-
+            
             VStack(alignment: .leading, spacing: 15) {
-                // Title Section
                 Text(VM.detailLandmark.title)
                     .font(.title)
                     .fontWeight(.bold)
@@ -40,7 +41,7 @@ struct LandMarkDetailView: View {
                 .padding([.horizontal])
                 
                 Divider()
-
+                
                 // Address Section
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
@@ -63,7 +64,7 @@ struct LandMarkDetailView: View {
                 .background(Color.white)
                 .cornerRadius(10)
                 .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
-
+                
                 // About Section
                 VStack(alignment: .leading, spacing: 10) {
                     Text("About")
@@ -75,10 +76,10 @@ struct LandMarkDetailView: View {
                         .fixedSize(horizontal: false, vertical: true) // Prevent text clipping
                 }
                 .padding([.horizontal])
-
+                
                 // Like Button
                 Button(action: {
-                    // 좋아요 누르면 리스트에 추가됨
+                    saveLandmark()
                 }) {
                     Text("좋아요")
                         .fontWeight(.bold)
@@ -102,4 +103,15 @@ struct LandMarkDetailView: View {
         .navigationTitle(landmark.title)
         .navigationBarTitleDisplayMode(.automatic)
     }
+    
+    func saveLandmark() {
+        let savedata = FavoriteItem(contentid: VM.detailLandmark.contentid, title: VM.detailLandmark.title)
+        modelContext.insert(savedata)
+        do {
+            try modelContext.save()
+        } catch {
+            print("Error saving data: \(error)")
+        }
+    }
+
 }

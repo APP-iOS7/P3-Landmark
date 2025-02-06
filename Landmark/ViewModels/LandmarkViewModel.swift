@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @Observable
 class LandmarkViewModel {
+    
     var landmarks: [Item] = []
     var searchText: String = ""
     var detailLandmark: Item = .init(contentid: "", contenttypeid: "", title: "", createdtime: "", modifiedtime: "", tel: "", telname: "", homepage: "", booktour: "", firstimage: "", firstimage2: "", cpyrhtDivCd: "", areacode: "", sigungucode: "", addr1: "", addr2: "", zipcode: "", mapx: "", mapy: "", mlevel: "", overview: "")
@@ -29,4 +31,8 @@ class LandmarkViewModel {
             print(error)
         }
     }
+    
+    
 }
+
+
