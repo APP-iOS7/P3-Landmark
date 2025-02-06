@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct FavoriteView: View {
+struct FavoriteViewTest: View {
     //    @Query private var favoriteItems: [FavoriteItem]
     @EnvironmentObject var appSetting: AppSettings
     var body: some View {
