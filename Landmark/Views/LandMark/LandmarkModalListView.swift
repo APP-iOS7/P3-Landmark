@@ -1,5 +1,5 @@
 //
-//  LandmarkListTest.swift
+//  LandmarkModalListView.swift
 //  Landmark
 //
 //  Created by 김덕원 on 2/6/25.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct LandmarkListTest: View {
+struct LandmarkModalListView: View {
     @State private var VM: LandmarkViewModel = .init()
-    @EnvironmentObject var tabSetting: AppSettings
+    @EnvironmentObject var appSetting: AppSettings
 
     var body: some View {
         NavigationStack {
@@ -89,12 +89,13 @@ struct LandmarkListTest: View {
                     }
                 }
             }
-            FloatingTabBar(selectedTab: $tabSetting.tab)
+            FloatingTabBar(selectedTab: $appSetting.tab)
         }
     }
 }
 
 
 #Preview {
-    LandmarkListTest()
+    LandmarkModalListView()
+        .environmentObject(AppSettings())
 }

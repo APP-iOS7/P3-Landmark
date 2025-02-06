@@ -8,21 +8,21 @@
 import SwiftUI
 import MapKit
 
-struct LandmarkListView: View {
+struct LandmarkMapView: View {
     @EnvironmentObject var appSetting: AppSettings
+    @State var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     var body: some View {
         ZStack {
-            MapView(coordinate: CLLocationCoordinate2D(latitude: 37.555946
-                                                       , longitude: 126.972317))
+            MapView(coordinate: appSetting.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.0001, longitudeDelta: 0.0001))
             .gesture(DragGesture())
             
             
             
             .sheet(isPresented: $appSetting.showingSheet) {
-                LandmarkListTest()
+                LandmarkModalListView()
                     .presentationBackgroundInteraction(.enabled)
-                    .presentationDetents([.fraction(0.3), .fraction(0.5), .fraction(1)])
+                    .presentationDetents([.fraction(0.2), .fraction(0.5), .fraction(1)])
                     .cornerRadius(20)
                     .shadow(radius: 5)
                     .transition(.move(edge: .bottom))
@@ -42,5 +42,6 @@ struct LandmarkListView: View {
 
 
 #Preview {
-    LandmarkListView()
+    LandmarkMapView()
+        .environmentObject(AppSettings())
 }

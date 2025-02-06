@@ -6,7 +6,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             TabView(selection: $appSetting.tab) {
-                LandmarkListView()
+                LandmarkMapView()
                     .tag(0)
                 FavoriteView()
                     .tag(1)
@@ -66,4 +66,5 @@ struct TabButton: View {
 }
 #Preview {
     ContentView()
+        .environmentObject(AppSettings())
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import MapKit
 
 @main
 struct LandmarkApp: App {
@@ -14,6 +15,7 @@ struct LandmarkApp: App {
     init() {
         FirebaseApp.configure()
     }
+    
     @StateObject private var appSettings = AppSettings()
     var body: some Scene {
         WindowGroup {
@@ -27,9 +29,9 @@ struct LandmarkApp: App {
     }
 }
 
-
 class AppSettings: ObservableObject {
     @Published var tab: Int = 0
     @Published var showingSheet = false
+    @Published var coordinate = CLLocationCoordinate2D(latitude: 37.555946
+                                               , longitude: 126.972317)
 }
-
