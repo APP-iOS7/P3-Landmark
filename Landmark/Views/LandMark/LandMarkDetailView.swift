@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-
+import SwiftData
 
 struct LandMarkDetailView: View {
-    @State var VM = LandmarkViewModel()
+    @State private var VM = LandmarkViewModel()
     @EnvironmentObject var appSetting: AppSettings
     
     let landmark: Item
@@ -48,7 +48,7 @@ struct LandMarkDetailView: View {
                 Text(VM.detailLandmark.overview ?? "")
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Button {
-                    // 좋아요 누르면 리스트에 추가됨
+//                    VM.saveLandmark()
                 } label: {
                     Text("좋아요")
                 }

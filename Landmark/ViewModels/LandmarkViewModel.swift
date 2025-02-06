@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @Observable
 class LandmarkViewModel {
+//    @Environment(\.modelContext) var modelContext
+    
     var landmarks: [Item] = []
     var searchText: String = ""
     var detailLandmark: Item = .init(contentid: "", contenttypeid: "", title: "", createdtime: "", modifiedtime: "", tel: "", telname: "", homepage: "", booktour: "", firstimage: "", firstimage2: "", cpyrhtDivCd: "", areacode: "", sigungucode: "", addr1: "", addr2: "", zipcode: "", mapx: "", mapy: "", mlevel: "", overview: "")
@@ -29,4 +32,18 @@ class LandmarkViewModel {
             print(error)
         }
     }
+    
+//    func saveLandmark() {
+//        let savedLandmark = FavoriteItem(from: detailLandmark)
+//        modelContext.insert(savedLandmark)
+//        
+//        do {
+//            try modelContext.save()
+//            print("좋아요 저장됨: \(savedLandmark.title)")
+//        } catch {
+//            print("저장 실패: \(error)")
+//        }
+//    }
 }
+
+
