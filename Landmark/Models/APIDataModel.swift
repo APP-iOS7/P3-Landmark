@@ -10,26 +10,26 @@ import CoreLocation
 
 struct APIResponse: Codable {
     let response: Response
-    
-    struct Response: Codable {
-        let header: ResponseHeader
-        let body: ResponseBody
-        
-        struct ResponseHeader: Codable {
-            let resultCode: String
-            let resultMsg: String
-        }
-        struct ResponseBody: Codable {
-            let items: Items
-            let numOfRows: Int
-            let pageNo: Int
-            let totalCount: Int
-            
-            struct Items: Codable {
-                let item: [Item]
-            }
-        }
-    }
+}
+struct Response: Codable {
+    let header: ResponseHeader
+    let body: ResponseBody
+}
+
+struct ResponseHeader: Codable {
+    let resultCode: String
+    let resultMsg: String
+}
+
+struct ResponseBody: Codable {
+    let items: Items
+    let numOfRows: Int
+    let pageNo: Int
+    let totalCount: Int
+}
+
+struct Items: Codable {
+    let item: [Item]
 }
 
 struct Item: Codable, Identifiable, Hashable {

@@ -42,6 +42,8 @@ struct MypageView: View {
                 .foregroundStyle(.white)
                 .cornerRadius(10)
                 .padding()
+                
+                Spacer()
             }
             // 네비게이션 이동
             .navigationDestination(for: String.self) { view in

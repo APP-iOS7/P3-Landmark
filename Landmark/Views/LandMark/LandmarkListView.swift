@@ -6,58 +6,40 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct LandmarkListView: View {
-    @State private var VM: LandmarkViewModel = .init()
+    @EnvironmentObject var appSetting: AppSettings
+    
     var body: some View {
-        NavigationStack {
-            HStack {
-                TextField("검색어를 입력하세요", text: $VM.searchText)
-                Button("검색") {
-                    Task {
-                        await VM.fetchLandmarks()
-                    }
-                }
+        ZStack {
+            MapView(coordinate: CLLocationCoordinate2D(latitude: 37.555946
+                                                       , longitude: 126.972317))
+            .gesture(DragGesture())
+            
+            
+            
+            .sheet(isPresented: $appSetting.showingSheet) {
+                LandmarkListTest()
+                    .presentationBackgroundInteraction(.enabled)
+                    .presentationDetents([.fraction(0.3), .fraction(0.5), .fraction(1)])
+                    .cornerRadius(20)
+                    .shadow(radius: 5)
+                    .transition(.move(edge: .bottom))
+                    .animation(.spring(), value: appSetting.showingSheet)
+                    .interactiveDismissDisabled(true)
+                    .background(.clear)
+                    .edgesIgnoringSafeArea(.bottom)
             }
-            List {
-                ForEach(VM.landmarks) { landmark in
-                    NavigationLink(value: landmark) {
-                        HStack {
-                            if let imageUrl = landmark.firstimage2, let url = URL(string: imageUrl) {
-                                AsyncImage(url: url) { phase in
-                                    switch phase {
-                                    case .empty:
-                                        ProgressView()
-                                    case .success(let image):
-                                        image.resizable()
-                                            .scaledToFit()
-                                            .frame(width: 50, height: 50)
-                                    case .failure:
-                                        Image(systemName: "photo") // 기본 이미지 제공
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                    default:
-                                        EmptyView()
-                                    }
-                                }
-                            } else {
-                                Image(systemName: "photo")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                            }
-                            Text(landmark.title)
-                                .font(.headline)
-                        }
-                    }
-                }
-            }
-            .navigationTitle("Landmark List")
-            .navigationDestination(for: Item.self) { landmark in
-                LandMarkDetailView(landmark: landmark)
-            }
+        }
+        
+        
+        .onAppear {
+            appSetting.showingSheet = true
         }
     }
 }
+
 
 #Preview {
     LandmarkListView()

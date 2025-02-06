@@ -14,13 +14,22 @@ struct LandmarkApp: App {
     init() {
         FirebaseApp.configure()
     }
+    @StateObject private var appSettings = AppSettings()
     var body: some Scene {
         WindowGroup {
             if authViewModel.user != nil {
                 ContentView()
+                    .environmentObject(appSettings)
             } else {
                 AuthView()
             }
         }
     }
 }
+
+
+class AppSettings: ObservableObject {
+    @Published var tab: Int = 0
+    @Published var showingSheet = false
+}
+
