@@ -51,18 +51,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B37739D12D53785A0046DDC9 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		B3C9BE0E2D53492F009F1052 = {
 			isa = PBXGroup;
 			children = (
 				B3C9BE192D53492F009F1052 /* Landmark */,
-				B37739D12D53785A0046DDC9 /* Frameworks */,
 				B3C9BE182D53492F009F1052 /* Products */,
 			);
 			sourceTree = "<group>";

@@ -78,9 +78,9 @@ struct LandMarkDetailView: View {
                 .padding([.horizontal])
                 
                 // Like Button
-                Button(action: {
-                    saveLandmark()
-                }) {
+                Button {
+                    addToFavorite()
+                } label: {
                     Text("좋아요")
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity)
@@ -104,14 +104,11 @@ struct LandMarkDetailView: View {
         .navigationBarTitleDisplayMode(.automatic)
     }
     
-    func saveLandmark() {
-        let savedata = FavoriteItem(contentid: VM.detailLandmark.contentid, title: VM.detailLandmark.title)
-        modelContext.insert(savedata)
-        do {
-            try modelContext.save()
-        } catch {
-            print("Error saving data: \(error)")
-        }
+    func addToFavorite() {
+        let savemodel = FavoriteItem(contentid: landmark.contentid, title: landmark.title, latitude: landmark.mapy, longitude: landmark.mapx, imgURL: landmark.firstimage!, address: landmark.addr1)
+        print(landmark.contentid)
+        print(savemodel)
+        dump(savemodel)
+        modelContext.insert(savemodel)
     }
-
 }
