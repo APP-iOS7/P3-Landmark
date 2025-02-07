@@ -20,7 +20,7 @@ struct AuthView: View {
                             .zIndex(1)
                         
                         GeometryReader { geometry in
-                            Image("TripImage")
+                            Image("travel")
                                 .resizable()
                                 .frame(width: geometry.size.width,height: geometry.size.height )
                                 .clipped()

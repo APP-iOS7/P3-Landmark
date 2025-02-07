@@ -10,7 +10,7 @@
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIImageName</key>
-		<string>LaunchImage</string>
+		<string>travel</string>
 	</dict>
 </dict>
 </plist>
