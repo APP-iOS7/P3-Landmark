@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import SwiftData
 import UIKit
 
@@ -20,6 +21,8 @@ final class FavoriteItem {
     var imgURL: String
     var address: String
     var isDone: Bool = false
+    @Attribute(.externalStorage)
+    var image: Data?
     var initDate: Date = Date()
     @Relationship(deleteRule: .cascade, inverse: \Detail.favoriteItem)
     var detail: Detail?
@@ -32,6 +35,21 @@ final class FavoriteItem {
         self.imgURL = imgURL
         self.address = address
     }
+    
+    func addImage(_ imageURL: String) {
+        guard let url = URL(string: imageURL),
+              let imageData = try? Data(contentsOf: url) else { return }
+        self.image = imageData
+    }
+
+    func getImage() -> Image? {
+        guard let imageData = image, let uiImage = UIImage(data: imageData) else {
+            return nil
+        }
+        return Image(uiImage: uiImage)
+    }
+
+    
 }
 
 @Model

@@ -27,14 +27,12 @@ struct FavoriteDetailView: View {
                             .shadow(radius: 5)
                     }
                     
-                    // 기본 지도 뷰
                     MapView(coordinate: .init(latitude: Double(favoriteItem.latitude)!, longitude: Double(favoriteItem.longitude)!))
                         .frame(width: 250, height: 250)
                 }
                 .padding(.horizontal)
             }
             
-            // 📌 사진 추가 버튼
             PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
                 HStack {
                     Image(systemName: "photo.on.rectangle.angled")
@@ -55,7 +53,6 @@ struct FavoriteDetailView: View {
             }
             .padding(.bottom, 10)
             
-            // 📌 데이터 입력 폼
             Form {
                 Section {
                     DatePicker("날짜", selection: $visitDate, displayedComponents: .date)
@@ -76,7 +73,6 @@ struct FavoriteDetailView: View {
                     }
                 }
                 
-                // 📌 저장 버튼 추가
                 Section {
                     Button("저장하기") {
                         saveDetail()
@@ -109,7 +105,6 @@ struct FavoriteDetailView: View {
         
     }
     
-    // ✅ 기존 Detail 데이터 불러오기
     private func loadDetailData() {
         if let detail = favoriteItem.detail {
             content = detail.content
@@ -119,24 +114,22 @@ struct FavoriteDetailView: View {
         }
     }
     
-    // ✅ 데이터 저장 함수
     private func saveDetail() {
         let detail = favoriteItem.detail ?? Detail()
         
         detail.content = content
         detail.visitDate = visitDate
         detail.rating = rating
-        detail.images = images.compactMap { $0.jpegData(compressionQuality: 1) } // UIImage → Data 변환
+        detail.images = images.compactMap { $0.jpegData(compressionQuality: 1) }
         
         if favoriteItem.detail == nil {
             favoriteItem.detail = detail
         }
         
-        modelContext.insert(favoriteItem) // SwiftData에 저장
+        modelContext.insert(favoriteItem)
     }
 }
 
-// 📌 평점 Enum
 enum Rating: Int, CaseIterable, Identifiable {
     case zero, one, two, three, four, five
     

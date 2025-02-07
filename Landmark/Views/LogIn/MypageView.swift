@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MypageView: View {
-    @State private var navigationPath = [String]() // 네비게이션 경로관리
+    @State private var navigationPath = [String]()
     @ObservedObject var authViewModel = AuthManager.shared
     
     
@@ -31,7 +31,6 @@ struct MypageView: View {
                 
                 Spacer()
                 
-                // Log Out
                 Button {
                     authViewModel.logout()
                 } label: {
@@ -45,7 +44,6 @@ struct MypageView: View {
                 
                 Spacer()
             }
-            // 네비게이션 이동
             .navigationDestination(for: String.self) { view in
                 if view == "Auth" {
                     AuthView()

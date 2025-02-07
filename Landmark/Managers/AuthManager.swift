@@ -19,14 +19,12 @@ final class AuthManager: ObservableObject {
         self.user = Auth.auth().currentUser
     }
     
-    // Sign in
     @MainActor
     func signIn(email: String, password: String) async throws {
         let result = try await Auth.auth().signIn(withEmail: email, password: password)
         self.user = result.user
     }
     
-    // Sign Up
     @MainActor
     func signUp(email: String, password: String) async throws {
         let result = try await Auth.auth().createUser(withEmail: email, password: password)
@@ -39,17 +37,14 @@ final class AuthManager: ObservableObject {
             ])
         }
         
-        // Updating the User
         self.user = user
     }
     
-    // Reset Password
     @MainActor
     func resetPassword(email: String) async throws {
         try await Auth.auth().sendPasswordReset(withEmail: email)
     }
     
-    //Log Out
     @MainActor
     func logout() {
         try? Auth.auth().signOut()

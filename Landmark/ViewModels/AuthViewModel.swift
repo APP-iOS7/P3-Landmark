@@ -15,7 +15,7 @@ final class AuthViewModel {
     var selectedAuthStyle: AuthStyle = .signUp
     var isSignUp: Bool { return selectedAuthStyle == .signUp }
     var isLoading = false
-    var isAuthenticated = false // 로그인 성공여부 추가
+    var isAuthenticated = false
     var navigationPath = [String]() // 네비게이션 경로관리
     var toastMessage = ""
     var isShowingToast = false
