@@ -13,8 +13,8 @@ struct LandmarkMapView: View {
     @State var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     var body: some View {
-        ZStack {
-            MapView(coordinate: appSetting.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.0020, longitudeDelta: 0.0020))
+        VStack {
+            MapView(coordinate: appSetting.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.0010, longitudeDelta: 0.0010))
             .gesture(DragGesture())
             .sheet(isPresented: $appSetting.showingSheet) {
                 LandmarkModalListView()

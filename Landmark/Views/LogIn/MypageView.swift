@@ -10,6 +10,7 @@ import SwiftUI
 struct MypageView: View {
     @State private var navigationPath = [String]()
     @ObservedObject var authViewModel = AuthManager.shared
+    @EnvironmentObject var appSetting: AppSettings
     
     
     var body: some View {
@@ -25,15 +26,17 @@ struct MypageView: View {
                         Text(userEmail)
                             .padding(.top, 20)
                         
+                    } else {
+                        Text("닉네임 안 만들어 주시나요?")
                     }
                     
                     Spacer()
                 }
                 .padding()
 
-                
-                // 메뉴 리스트
-                NavigationLink(destination: FavoriteView()) {
+                Button {
+                    appSetting.tab = 1
+                } label: {
                     HStack {
                         VStack(alignment: .leading) {
                             Text("관심 여행지")
@@ -54,7 +57,9 @@ struct MypageView: View {
                 
                 Divider()
                 
-                NavigationLink(destination: LandmarkMapView()) {
+                Button {
+                    appSetting.tab = 0
+                } label: {
                     HStack {
                         VStack(alignment: .leading) {
                             Text("여행지 검색")
@@ -68,11 +73,12 @@ struct MypageView: View {
                             .foregroundStyle(.gray)
                     }
                     .padding()
+                    .padding(.horizontal)
                 }
                 .buttonStyle(.plain)
-                .padding(.horizontal)
                 
                 Divider()
+                
                     Button(action: {
                         authViewModel.logout()
                     }) {
@@ -97,12 +103,6 @@ struct MypageView: View {
                 Spacer()
             }
             .navigationTitle("MyPage")
-            // 네비게이션 이동
-            .navigationDestination(for: String.self) { view in
-                if view == "Auth" {
-                    AuthView()
-                }
-            }
         }
         
     }
