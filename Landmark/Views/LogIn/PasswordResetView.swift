@@ -38,7 +38,7 @@ struct PasswordResetView: View {
                 }
                 showForgetPass = false
             } label: {
-                Text("재설정")
+                Text("메일 보내기")
                     .font(.system(.title3, design: .rounded))
             }
             .frame(maxWidth: .infinity)

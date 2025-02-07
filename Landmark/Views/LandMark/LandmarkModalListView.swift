@@ -51,7 +51,7 @@ struct LandmarkModalListView: View {
                         .background(Color(.systemGray6))
                         .cornerRadius(12)
                         .shadow(radius: 5)
-                        .padding(.top, 20)
+                        .padding(.top, 40)
                         
                         
                     }
