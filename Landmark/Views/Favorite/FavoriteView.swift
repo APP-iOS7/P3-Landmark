@@ -23,6 +23,7 @@ struct FavoriteView: View {
                                 GeometryReader { geo in
                                     let scale = getScale(proxy: geo)
                                     let opacity = getOpacity(proxy: geo)
+                                    
                                     AsyncImage(url: URL(string: item.imgURL)) { phase in
                                         switch phase {
                                         case .empty:

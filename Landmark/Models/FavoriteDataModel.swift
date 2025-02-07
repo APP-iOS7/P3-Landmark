@@ -36,11 +36,17 @@ final class FavoriteItem {
         self.address = address
     }
     
-    func addImage(_ imageURL: String) {
-        guard let url = URL(string: imageURL),
-              let imageData = try? Data(contentsOf: url) else { return }
-        self.image = imageData
+    func addImage(_ imageURL: String) async {
+        guard let url = URL(string: imageURL) else { return }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            self.image = data
+        } catch {
+            print("이미지 다운로드 실패: \(error)")
+        }
     }
+
 
     func getImage() -> Image? {
         guard let imageData = image, let uiImage = UIImage(data: imageData) else {
