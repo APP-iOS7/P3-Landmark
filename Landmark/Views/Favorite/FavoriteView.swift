@@ -10,13 +10,13 @@ import SwiftData
 
 struct FavoriteView: View {
     @State private var VM: LandmarkViewModel = .init()
-    @Query private var favoriteItems: [FavoriteItem]
+    @Query(sort: \FavoriteItem.initDate, order: .reverse) private var favoriteItems: [FavoriteItem]
     @EnvironmentObject var appSetting: AppSettings
     
     var body: some View {
         NavigationStack {
-            ScrollView(.horizontal, showsIndicators: false) { // 가로 스크롤
-                LazyHStack(spacing: 0) { // 가로 배치
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 0) {
                     ForEach(favoriteItems) { item in
                         NavigationLink(value: item) {
                             VStack {
@@ -109,7 +109,7 @@ struct FavoriteView: View {
                         }
                     }
                 }
-                .padding(.horizontal, (UIScreen.main.bounds.width - 320) / 2) // 좌우 여백 추가
+                .padding(.horizontal, (UIScreen.main.bounds.width - 320) / 2)
             }
             .navigationDestination(for: FavoriteItem.self) { favoriteItem in
                 FavoriteDetailView(favoriteItem: favoriteItem)
@@ -117,7 +117,6 @@ struct FavoriteView: View {
             .navigationTitle("관심 여행지")
         }
     }
-        
         /// 화면 중앙에 가까울수록 1.0, 멀어질수록 0.8 정도의 scale 값을 반환
         private func getScale(proxy: GeometryProxy) -> CGFloat {
             // 현재 이미지 뷰의 중앙 X좌표 (전역 좌표 기준)

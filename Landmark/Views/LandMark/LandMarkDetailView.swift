@@ -16,7 +16,6 @@ struct LandMarkDetailView: View {
     
     var body: some View {
         ScrollView {
-            // Image Section
             AsyncImage(url: URL(string: VM.detailLandmark.firstimage ?? "이미지 정보없음"), scale: 1) { image in
                 image
                     .resizable()
@@ -37,7 +36,6 @@ struct LandMarkDetailView: View {
                     .fontWeight(.bold)
                     .padding([.top, .horizontal])
                 
-                // Contact Info Section
                 HStack {
                     Text(VM.detailLandmark.tel ?? "전화번호 없음")
                         .font(.subheadline)
@@ -81,7 +79,6 @@ struct LandMarkDetailView: View {
                 }
                 .padding([.horizontal])
                 
-                // Like Button
                 Button {
                     addToFavorite()
                 } label: {

@@ -14,13 +14,11 @@ struct AuthView: View {
     var body: some View {
         NavigationStack(path: $VM.navigationPath) {
             ZStack {
-                // Background
                     ZStack {
                         Color.black
                             .opacity(0.65)
                             .zIndex(1)
                         
-                        // Background Image
                         GeometryReader { geometry in
                             Image("TripImage")
                                 .resizable()
@@ -35,7 +33,6 @@ struct AuthView: View {
                     }
             
                     VStack(spacing: 25) {
-                        // App Name
                         VStack(spacing: 5) {
                             Image(systemName: "airplane.circle")
                                 .resizable()
@@ -58,14 +55,12 @@ struct AuthView: View {
                         
                         HStack(spacing: 10) {
                             
-                            // Sign In
                             AuthButton(title: "로그인", isSelected: VM.selectedAuthStyle == .signIn) {
                                 withAnimation(.easeInOut) {
                                     VM.selectedAuthStyle = .signIn
                                 }
                             }
                             
-                            // Sign Up
                             AuthButton(title: "회원가입", isSelected: VM.selectedAuthStyle == .signUp) {
                                 withAnimation(.easeInOut) {
                                     VM.selectedAuthStyle = .signUp
@@ -80,7 +75,6 @@ struct AuthView: View {
                         .padding(.horizontal, 30)
                         
                         VStack(spacing: 15) {
-                            // Email
                             TextField("Email", text:$VM.email,
                                       prompt: Text("Email").foregroundStyle(.white)
                             )
@@ -89,7 +83,6 @@ struct AuthView: View {
                             .keyboardType(.emailAddress)
                             .focused($isTextFieldFocused)
                             
-                            // Password
                             SecureField("Password", text: $VM.password,
                                         prompt: Text("Password")
                                 .foregroundStyle(.white))
@@ -111,7 +104,6 @@ struct AuthView: View {
                                     Text(VM.isSignUp ? "회원가입" : "로그인")
                                         .font(.system(.title3, design: .rounded, weight: .bold))
                                 } else {
-                                    // Loading indicator
                                     ProgressView()
                                         .tint(.white)
                                 }
@@ -125,14 +117,12 @@ struct AuthView: View {
                         .buttonStyle(.plain)
                         .padding(.horizontal, 30)
                         
-                        // 네비게이션 이동
                         .navigationDestination(for: String.self) { view in
                             if view == "Main" {
                                 MypageView()
                             }
                         }
                         
-                        //Forgot Password
                         Button {
                             VM.showForgetPass.toggle()
                         } label: {
