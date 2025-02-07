@@ -24,27 +24,127 @@ struct MypageView: View {
                     if let userEmail = authViewModel.user?.email {
                         Text(userEmail)
                             .padding(.top, 20)
+//                        
+//                        VStack {
+//                            Button(action: {
+//                                authViewModel.logout()
+//                            }) {
+//                                HStack {
+//                                    VStack(alignment: .leading) {
+//                                        Text("Log Out")
+//                                            .font(.headline)
+//                                            .foregroundStyle(.black)
+//                                    }
+//                                    
+//                                    Spacer()
+//                                    
+//                                    Image(systemName: "chevron.right")
+//                                        .foregroundStyle(.gray)
+//                                }
+//                                .padding()
+//                                .background(RoundedRectangle(cornerRadius: 10).fill(Color(UIColor.systemBackground)).shadow(radius: 2))
+//                            }
+//                            .padding(.top, 50)
+//                            .buttonStyle(.plain)
+//                            .padding(.horizontal)
+//                        }
+                        
                     }
+                    
                     Spacer()
                 }
-                .padding(.leading)
+                .padding()
                 
-                Spacer()
+                Divider()
                 
-                // Log Out
-                Button {
-                    authViewModel.logout()
-                } label: {
-                    Text("Log out")
+                    .padding()
+                // 메뉴 리스트
+                VStack(spacing: 20) {
+                    Button(action: {
+                        authViewModel.logout()
+                    }) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("관심 여행지")
+                                    .font(.headline)
+                                    .foregroundStyle(.black)
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(.gray)
+                        }
+                        .padding()
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.horizontal)
+                    
+                    Button(action: {
+                        authViewModel.logout()
+                    }) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("여행지 검색")
+                                    .font(.headline)
+                                    .foregroundStyle(.black)
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(.gray)
+                        }
+                        .padding()
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.horizontal)
+                    
+                    Button(action: {
+                        authViewModel.logout()
+                    }) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Log Out")
+                                    .font(.headline)
+                                    .foregroundStyle(.black)
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(.gray)
+                        }
+                        .padding()
+                        }
+                    .buttonStyle(.plain)
+                    .padding(.horizontal)
+                    
+                    // Log Out
+                    Button(action: {
+                        authViewModel.logout()
+                    }) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Log Out")
+                                    .font(.headline)
+                                    .foregroundStyle(.black)
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(.gray)
+                        }
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color(UIColor.systemBackground)).shadow(radius: 2))
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.horizontal)
                 }
-                .padding()
-                .background(Color.red)
-                .foregroundStyle(.white)
-                .cornerRadius(10)
-                .padding()
-                
                 Spacer()
             }
+            .navigationTitle("MyPage")
             // 네비게이션 이동
             .navigationDestination(for: String.self) { view in
                 if view == "Auth" {
