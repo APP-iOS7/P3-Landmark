@@ -117,7 +117,7 @@ struct LandMarkDetailView: View {
             imgURL: landmark.firstimage!,
             address: landmark.addr1
         )
-        
+        saveModel.addImage(saveModel.imgURL)
         modelContext.insert(saveModel)
     }
 }
