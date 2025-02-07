@@ -77,25 +77,55 @@ struct FavoriteView: View {
                                                 )
                                                 .shadow(radius: scale == 1.0 ? 10 : 0)
                                         case .failure:
-                                            Image("MyCat")
-                                                .resizable()
+                                            item.getImage()
+                                                .scaledToFill()
                                                 .frame(width: 320, height: 450)
                                                 .cornerRadius(20)
                                                 .overlay(
-                                                    VStack(alignment: .leading) {
-                                                        Text(item.title)
-                                                            .padding(.top, 20)
-                                                            .foregroundStyle(.black)
-                                                            .font(.title)
+                                                    ZStack {
+                                                        RoundedRectangle(cornerRadius: 20)
+                                                            .fill(Color.black.opacity(opacity))
+                                                            .frame(width: 320, height: 450)
                                                         
-                                                        Text(item.address)
-                                                            .foregroundStyle(.white)
-                                                            .font(.headline)
-                                                        
-                                                        Spacer()
+                                                        VStack(alignment: .leading) {
+                                                            VStack(alignment: .trailing) {
+                                                                Button {
+                                                                    item.isDone.toggle()
+                                                                } label: {
+                                                                    Image(systemName: item.isDone ? "pin.circle.fill" : "pin.circle.fill")
+                                                                        .padding(.top, 20)
+                                                                        .font(.system(size: 35))
+                                                                        .foregroundStyle(item.isDone ? .green : .red)
+                                                                        .background(Color.white)
+                                                                        .clipShape(.rect(cornerRadii: RectangleCornerRadii(bottomLeading: 10, bottomTrailing:10)))
+                                                                }
+                                                                Spacer()
+                                                                
+                                                                Text(item.title)
+                                                                    .padding(.bottom, 5)
+                                                                    .foregroundStyle(.white)
+                                                                    .font(.system(size: 25, weight: .bold))
+                                                                
+                                                                Text("✩✩✩✩✩")
+                                                                    .padding(.bottom, 10)
+                                                                    .foregroundStyle(.white)
+                                                                    .font(.system(size: 20, weight: .bold))
+                                                                
+                                                                Text("2025년 10월 10일")
+                                                                    .padding(.bottom, 20)
+                                                                    .foregroundStyle(.white)
+                                                                    .font(.system(size: 15, weight: .bold))
+                                                                
+                                                                Text(item.address)
+                                                                    .padding(.bottom, 30)
+                                                                    .foregroundStyle(.white)
+                                                                    .font(.system(size: 15, weight: .bold))
+                                                            }
+                                                        }
                                                     }
                                                 )
-                                            //
+                                                .shadow(radius: scale == 1.0 ? 10 : 0)
+                                            
                                         default:
                                             EmptyView()
                                         }

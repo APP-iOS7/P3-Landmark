@@ -74,6 +74,7 @@ struct FavoriteDetailView: View {
                 }
                 
                 Section {
+                    
                     Button("저장하기") {
                         saveDetail()
                     }
