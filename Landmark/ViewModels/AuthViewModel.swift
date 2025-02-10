@@ -29,21 +29,12 @@ final class AuthViewModel {
                 } else {
                     try await AuthManager.shared.signIn(email: email, password: password)
                     isAuthenticated = true
-                    showToast(message: "로그인 성공")
                 }
                 isLoading = false
                 navigationPath.append("Main")
             } catch {
-                showToast(message: "로그인 실패: \(error.localizedDescription)")
+                print("로그인 실패 \(error)")
             }
-        }
-    }
-    
-    private func showToast(message: String) {
-        toastMessage = message
-        isShowingToast = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.isShowingToast = false
         }
     }
 }

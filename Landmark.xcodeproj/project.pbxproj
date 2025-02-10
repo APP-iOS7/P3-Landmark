@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D334DA92D5A0BD500EF2F95 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2D334DA82D5A0BD500EF2F95 /* KakaoSDK */; };
+		2D334DAB2D5A0BD500EF2F95 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2D334DAA2D5A0BD500EF2F95 /* KakaoSDKAuth */; };
+		2D334DAD2D5A0BD500EF2F95 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 2D334DAC2D5A0BD500EF2F95 /* KakaoSDKCommon */; };
+		2D334DAF2D5A0BD500EF2F95 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 2D334DAE2D5A0BD500EF2F95 /* KakaoSDKUser */; };
 		B37739CE2D53783F0046DDC9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B37739CD2D53783F0046DDC9 /* FirebaseAnalytics */; };
 		B37739D02D53783F0046DDC9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B37739CF2D53783F0046DDC9 /* FirebaseAuth */; };
 		B37739D32D53785A0046DDC9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B37739D22D53785A0046DDC9 /* FirebaseFirestore */; };
@@ -43,8 +47,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B37739CE2D53783F0046DDC9 /* FirebaseAnalytics in Frameworks */,
+				2D334DA92D5A0BD500EF2F95 /* KakaoSDK in Frameworks */,
 				B37739D02D53783F0046DDC9 /* FirebaseAuth in Frameworks */,
+				2D334DAF2D5A0BD500EF2F95 /* KakaoSDKUser in Frameworks */,
 				B37739D32D53785A0046DDC9 /* FirebaseFirestore in Frameworks */,
+				2D334DAD2D5A0BD500EF2F95 /* KakaoSDKCommon in Frameworks */,
+				2D334DAB2D5A0BD500EF2F95 /* KakaoSDKAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +98,10 @@
 				B37739CD2D53783F0046DDC9 /* FirebaseAnalytics */,
 				B37739CF2D53783F0046DDC9 /* FirebaseAuth */,
 				B37739D22D53785A0046DDC9 /* FirebaseFirestore */,
+				2D334DA82D5A0BD500EF2F95 /* KakaoSDK */,
+				2D334DAA2D5A0BD500EF2F95 /* KakaoSDKAuth */,
+				2D334DAC2D5A0BD500EF2F95 /* KakaoSDKCommon */,
+				2D334DAE2D5A0BD500EF2F95 /* KakaoSDKUser */,
 			);
 			productName = Landmark;
 			productReference = B3C9BE172D53492F009F1052 /* Landmark.app */;
@@ -121,6 +133,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				B37739CC2D53783F0046DDC9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2D334DA72D5A0BD500EF2F95 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B3C9BE182D53492F009F1052 /* Products */;
@@ -288,6 +301,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -319,6 +333,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -358,6 +373,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2D334DA72D5A0BD500EF2F95 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.23.0;
+			};
+		};
 		B37739CC2D53783F0046DDC9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -369,6 +392,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2D334DA82D5A0BD500EF2F95 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D334DA72D5A0BD500EF2F95 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		2D334DAA2D5A0BD500EF2F95 /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D334DA72D5A0BD500EF2F95 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		2D334DAC2D5A0BD500EF2F95 /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D334DA72D5A0BD500EF2F95 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+		2D334DAE2D5A0BD500EF2F95 /* KakaoSDKUser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D334DA72D5A0BD500EF2F95 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKUser;
+		};
 		B37739CD2D53783F0046DDC9 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B37739CC2D53783F0046DDC9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

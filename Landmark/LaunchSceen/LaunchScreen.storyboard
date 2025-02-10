@@ -15,48 +15,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
-                                <rect key="frame" x="0.0" y="832" width="393" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="travel" translatesAutoresizingMaskIntoConstraints="NO" id="b2D-DT-bpf">
-                                <rect key="frame" x="-149" y="-825" width="1430" height="1881"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="travelImage" translatesAutoresizingMaskIntoConstraints="NO" id="pTq-Zv-lvM">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="airplane.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RU0-n9-Yqo">
-                                <rect key="frame" x="153" y="381.66666666666669" width="87" height="88"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="airplane.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="266-oC-6cB">
+                                <rect key="frame" x="115" y="343.66666666666669" width="163" height="164.66666666666669"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TripList" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
-                                <rect key="frame" x="0.0" y="429" width="393" height="115"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TripList" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kqb-Ks-bTK">
+                                <rect key="frame" x="140" y="517" width="112" height="34.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="31"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="5cz-MP-9tL"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="centerX" secondItem="GJd-Yh-RWb" secondAttribute="centerX" id="Q3B-4B-g5h"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" symbolic="YES" id="SfN-ll-jLj"/>
-                            <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" id="Y44-ml-fuU"/>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="bottom" multiplier="1/3" constant="1" id="moa-c2-u7t"/>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" symbolic="YES" id="x7j-FC-K8j"/>
+                            <constraint firstItem="pTq-Zv-lvM" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4fP-lf-lle"/>
+                            <constraint firstItem="266-oC-6cB" firstAttribute="centerX" secondItem="pTq-Zv-lvM" secondAttribute="centerX" id="Bub-AJ-KIA"/>
+                            <constraint firstAttribute="trailing" secondItem="pTq-Zv-lvM" secondAttribute="trailing" id="Crp-Cn-dhM"/>
+                            <constraint firstItem="266-oC-6cB" firstAttribute="centerY" secondItem="pTq-Zv-lvM" secondAttribute="centerY" id="FqI-aR-pA8"/>
+                            <constraint firstItem="266-oC-6cB" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="GJE-hh-O3U"/>
+                            <constraint firstItem="pTq-Zv-lvM" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="LIC-us-WP8"/>
+                            <constraint firstItem="266-oC-6cB" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="284.00000000000006" id="WaZ-Tl-2jh"/>
+                            <constraint firstItem="Kqb-Ks-bTK" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="108.33333333333337" id="bN7-Vb-bYD"/>
+                            <constraint firstItem="266-oC-6cB" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="115" id="efw-Kz-fFI"/>
+                            <constraint firstItem="Kqb-Ks-bTK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gAa-m3-2st"/>
+                            <constraint firstItem="pTq-Zv-lvM" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="gkN-HH-0Y7"/>
+                            <constraint firstItem="266-oC-6cB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="u1j-Ga-4sP"/>
+                            <constraint firstAttribute="bottom" secondItem="pTq-Zv-lvM" secondAttribute="bottom" id="upA-LV-LuN"/>
+                            <constraint firstItem="pTq-Zv-lvM" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="vW7-s9-hxK"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
+            <point key="canvasLocation" x="475.57251908396944" y="-299.29577464788736"/>
         </scene>
     </scenes>
     <color key="tintColor" systemColor="viewFlipsideBackgroundColor"/>
     <resources>
         <image name="airplane.circle" catalog="system" width="128" height="123"/>
-        <image name="travel" width="283.5" height="425"/>
+        <image name="travelImage" width="196.5" height="426"/>
         <systemColor name="viewFlipsideBackgroundColor">
             <color red="0.12156862745098039" green="0.12941176470588237" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

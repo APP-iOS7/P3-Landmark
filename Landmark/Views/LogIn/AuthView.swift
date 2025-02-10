@@ -18,8 +18,7 @@ struct AuthView: View {
                         Color.black
                             .opacity(0.65)
                             .zIndex(1)
-                        
-                        GeometryReader { geometry in
+                         GeometryReader { geometry in
                             Image("travel")
                                 .resizable()
                                 .frame(width: geometry.size.width,height: geometry.size.height )
@@ -143,6 +142,8 @@ struct AuthView: View {
                             .foregroundStyle(.white.opacity(0.85))
                         }
                         .buttonStyle(.plain)
+                        
+                        KakaoButton()
                         
                         Spacer()
                     }

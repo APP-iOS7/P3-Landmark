@@ -7,8 +7,11 @@
 
 import SwiftUI
 import Firebase
+import KakaoSDKAuth
+import KakaoSDKCommon
 import MapKit
 import SwiftData
+
 
 @main
 struct LandmarkApp: App {
@@ -17,17 +20,23 @@ struct LandmarkApp: App {
     
     init() {
         FirebaseApp.configure()
+        KakaoSDK.initSDK(appKey: "{6a0d0977198785e56f0d508a0dc93ff5}")
     }
 
     var body: some Scene {
         WindowGroup {
             if authViewModel.user != nil {
-                ContentView()
+                ContentView() .onOpenURL { url in
+                    if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                       _ = AuthController.handleOpenUrl(url: url)
+                    }
+                }
                     .environmentObject(appSettings)
                     .modelContainer(for: FavoriteItem.self)
             } else {
                 AuthView()
             }
+               
         }
     }
 }
